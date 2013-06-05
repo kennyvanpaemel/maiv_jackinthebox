@@ -31,7 +31,7 @@ $app->post('/users','addUser');//
 $app->post('/comments/:burger_id/:user_id','addComment');//
 
 $app->put('/burgers/:burger_id','updateBurger');//
-$app->put('/burgers/:burger_id/:rating','updateBurgerRating');
+$app->put('/burgers/:burger_id/:rating','updateBurgerRating');//
 
 $app->run();
 

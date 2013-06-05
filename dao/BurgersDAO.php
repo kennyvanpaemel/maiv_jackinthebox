@@ -61,6 +61,18 @@ class BurgersDAO
         }
     }
 
+    public function updateBurgerRating($burger_id,$rating)
+    {
+        $sql = 'UPDATE burgers SET rating= :rating WHERE burger_id= :burger_id';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":burger_id",$burger_id);
+        $stmt->bindValue(":rating",$rating);
+        if($stmt->execute())
+        {
+            return $this;
+        }
+    }
+
     public function getLastInsertedBurger($burger_id){
         $sql = "SELECT * 
                 FROM burgers

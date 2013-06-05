@@ -30,33 +30,31 @@ class BurgersDAO
 
     }
 
-    public function updateDestination($id,$data)
+    public function updateBurger($burger_id,$post)
     {
-        $sql = 'UPDATE destinations SET trip_naam= :tripnaam, city= :city, country= :country, slaapplaats= :slaapplaats, vervoer= :vervoer, dest_id= :destid WHERE id= :id';
+        $sql = 'UPDATE burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE burger_id= :burger_id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':tripnaam',$data['trip_naam']);
-        $stmt->bindValue(':city',$data['city']);
-        $stmt->bindValue(':country',$data['country']);
-        $stmt->bindValue(':slaapplaats',$data['slaapplaats']);
-        $stmt->bindValue(':vervoer',$data['vervoer']);
-        $stmt->bindValue(':destid',$data['dest_id']);
-        $stmt->bindValue(':id',$id);
+        $stmt->bindValue(":name",$post['name']);
+        $stmt->bindValue(":taste",$post['taste']);
+        $stmt->bindValue(":rating",$post['rating']);
+        $stmt->bindValue(":weight",$post['weight']);
+        $stmt->bindValue(":burger_id",$post['burger_id']);
         if($stmt->execute())
         {
-            return $data;
+            return $this;
         }
     }
 
-    public function getLastInsertedTrip($id){
+    public function getLastInsertedBurger($burger_id){
         $sql = "SELECT * 
-                FROM `trips`
-                WHERE id = :id";
+                FROM burgers
+                WHERE burger_id = :burger_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':burger_id', $burger_id);
         if($stmt->execute()){
-            $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-            if(!empty($trip)){
-                return $trip;
+            $burger_id = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burger_id)){
+                return $burger_id;
             }
         }
         return array();
@@ -66,10 +64,10 @@ class BurgersDAO
     {
         $sql = "INSERT INTO destinations (name,taste,rating,weight) VALUES(:name,:taste,:rating,:weight)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":name",$name);
-        $stmt->bindValue(":taste",$taste);
-        $stmt->bindValue(":rating",$rating);
-        $stmt->bindValue(":weight",$weight);
+        $stmt->bindValue(":name",$post['name']);
+        $stmt->bindValue(":taste",$post['taste']);
+        $stmt->bindValue(":rating",$post['rating']);
+        $stmt->bindValue(":weight",$post['weight']);
         if($stmt->execute()){
             return $this;
         }

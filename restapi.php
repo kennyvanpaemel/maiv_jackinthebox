@@ -14,23 +14,23 @@ require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'TastesDAO.php';
 
 $app = new Slim();
 
-$app->get('/burgers','getAllBurgers');
-$app->get('/users','getAllUsers');
-$app->get('/ingredients','getAllIngredients');
-$app->get('/comments','getAllComments');
+$app->get('/burgers','getAllBurgers');//
+$app->get('/users','getAllUsers');//
+$app->get('/ingredients','getAllIngredients');//
+$app->get('/comments','getAllComments');//
 $app->get('/tastes','getAllTastes');
 
-$app->get('/burgers/:user_id','getBurgerForUser');
-$app->get('/users/:burger_id','getUsersForBurger');
+$app->get('/burgers/:user_id','getBurgerForUser');//
+$app->get('/users/:burger_id','getUsersForBurger');//
 $app->get('/burgers/:taste_id','getBurgersByTaste');
-$app->get('/burgers/:vegi','getVegiBurgers');
-$app->get('/ingredients/:ingredient_id','getIngredientById');
+$app->get('/burgers/vegi','getVegiBurgers');
+$app->get('/ingredients/:ingredient_id','getIngredientById');//
 
-$app->post('/burgers','addBurger');
-$app->post('/users','addUser');
-$app->post('/comments/:burger_id/:user_id','addComment');
+$app->post('/burgers','addBurger');//
+$app->post('/users','addUser');//
+$app->post('/comments/:burger_id/:user_id','addComment');//
 
-$app->put('/burgers/:burger_id','updateBurger');
+$app->put('/burgers/:burger_id','updateBurger');//
 $app->put('/burgers/:burger_id/:rating','updateBurgerRating');
 
 $app->run();

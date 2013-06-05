@@ -30,6 +30,22 @@ class BurgersDAO
 
     }
 
+    public function getBurgerForUser($user_id)
+    {
+        $sql = "SELECT * 
+                FROM burgers
+                WHERE $user_id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id);
+        if($stmt->execute()){
+            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burger)){
+                return $burger;
+            }
+        }
+        return array();
+    }
+
     public function updateBurger($burger_id,$post)
     {
         $sql = 'UPDATE burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE burger_id= :burger_id';

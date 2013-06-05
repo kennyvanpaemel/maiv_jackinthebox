@@ -30,6 +30,24 @@ class IngredientsDAO
 
     }
 
+    public function getIngredientById($id)
+    {
+        $sql = 'SELECT * FROM ingredients WHERE $id= :id';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":id",$id);
+        if($stmt->execute())
+        {
+            $ingredient = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!empty($ingredient))
+            { 
+                return $ingredient;
+            }
+        }
+
+        return array();
+    }
+
     public function addIngredient($post)
     {
         $sql = "INSERT INTO ingredients (name,taste,vegi,weight) VALUES(:name,:taste,:vegi,:weight)";

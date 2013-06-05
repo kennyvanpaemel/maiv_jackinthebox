@@ -30,6 +30,22 @@ class UsersDAO
 
     }
 
+    public function getUsersForBurger($burger_id)
+    {
+        $sql = "SELECT * 
+                FROM burgers
+                WHERE burger_id = :burger_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':burger_id', $burger_id);
+        if($stmt->execute()){
+            $users = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($users)){
+                return $users;
+            }
+        }
+        return array();
+    }
+
     public function getLastInsertedUser($user_id){
         $sql = "SELECT * 
                 FROM burgers

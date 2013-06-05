@@ -23,7 +23,8 @@ $app->get('/tastes','getAllTastes');
 $app->get('/burgers/:user_id','getBurgerForUser');//
 $app->get('/users/:burger_id','getUsersForBurger');//
 $app->get('/burgers/:taste_id','getBurgersByTaste');
-$app->get('/burgers/vegi','getVegiBurgers');
+$app->get('/burgers/vegi','getVegiBurgers');//
+$app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
 $app->get('/ingredients/:ingredient_id','getIngredientById');//
 
 $app->post('/burgers','addBurger');//
@@ -101,6 +102,13 @@ function getVegiBurgers()
 {
 	$burgersDAO = new BurgersDAO();
 	echo json_encode($burgersDAO->getVegiBurgers());
+	exit();
+}
+
+function getVegiBurgersByTaste($taste)
+{
+	$burgersDAO = new BurgersDAO();
+	echo json_encode($burgersDAO->getVegiBurgersByTaste($taste));
 	exit();
 }
 

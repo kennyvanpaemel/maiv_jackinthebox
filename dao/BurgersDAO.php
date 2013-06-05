@@ -34,9 +34,40 @@ class BurgersDAO
     {
         $sql = "SELECT * 
                 FROM burgers
-                WHERE $user_id = :user_id";
+                WHERE user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':user_id', $user_id);
+        if($stmt->execute()){
+            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burger)){
+                return $burger;
+            }
+        }
+        return array();
+    }
+
+    public function getVegiBurgers()
+    {
+        $sql = "SELECT * 
+                FROM burgers
+                WHERE vegi = 1";
+        $stmt = $this->pdo->prepare($sql);
+        if($stmt->execute()){
+            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burger)){
+                return $burger;
+            }
+        }
+        return array();
+    }
+
+    public function getVegiBurgersByTaste($taste)
+    {
+        $sql = "SELECT * 
+                FROM burgers
+                WHERE vegi = 1 AND taste= :taste";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':taste', $taste);
         if($stmt->execute()){
             $burger = $stmt->fetch(PDO::FETCH_ASSOC);
             if(!empty($burger)){

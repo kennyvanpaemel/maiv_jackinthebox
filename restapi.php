@@ -18,7 +18,7 @@ $app->get('/burgers','getAllBurgers');//
 $app->get('/users','getAllUsers');//
 $app->get('/ingredients','getAllIngredients');//
 $app->get('/comments','getAllComments');//
-$app->get('/tastes','getAllTastes');
+$app->get('/tastes','getAllTastes');//
 
 $app->get('/burgers/:user_id','getBurgerForUser');//
 $app->get('/users/:burger_id','getUsersForBurger');//

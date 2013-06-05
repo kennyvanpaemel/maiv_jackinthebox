@@ -46,6 +46,21 @@ class BurgersDAO
         return array();
     }
 
+    public function getBurgersByTaste($taste_id)
+    {
+        $sql = "SELECT * 
+                FROM burgers
+                WHERE taste_id = :taste_id";
+        $stmt = $this->pdo->prepare($sql);
+        if($stmt->execute()){
+            $burgers = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burgers)){
+                return $burgers;
+            }
+        }
+        return array();
+    }
+
     public function getVegiBurgers()
     {
         $sql = "SELECT * 

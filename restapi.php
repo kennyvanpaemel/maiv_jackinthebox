@@ -106,25 +106,39 @@ function getVegiBurgers()
 
 function addBurger()
 {
+	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
 	$burgersDAO = new BurgersDAO();
+	echo json_encode($burgersDAO->addBurger($post));
+	exit();
 }
 
 function addUser()
 {
+	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
 	$usersDAO = new UsersDAO();
+	echo json_encode($usersDAO->addUser($post));
+	exit();
 }
 
 function addComment($burger_id,$user_id)
 {
+	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
 	$commentsDAO = new CommentsDAO();
+	echo json_encode($commentsDAO->addComment($burger_id,$user_id,$post));
+	exit();
 }
 
 function updateBurger($burger_id)
 {
+	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
 	$burgersDAO = new BurgersDAO();
+	echo json_encode($burgersDAO->updateBurger($burger_id,$post));
+	exit();
 }
 
 function updateBurgerRating($burger_id,$rating)
 {
 	$burgersDAO = new BurgersDAO();
+	echo json_encode($burgersDAO->updateRating($burger_id,$rating));
+	exit();
 }

@@ -21,7 +21,7 @@ $app->get('/comments','getAllComments');//
 $app->get('/tastes','getAllTastes');//
 
 $app->get('/burgers/:user_id','getBurgerForUser');//
-$app->get('/users/:burger_id','getUsersForBurger');//
+$app->get('/users/:usergroup_id','getUsersForBurger');//
 $app->get('/burgers/:taste_id','getBurgersByTaste');
 $app->get('/burgers/vegi','getVegiBurgers');//
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
@@ -84,10 +84,10 @@ function getBurgerForUser($user_id)
 	exit();
 }
 
-function getUsersForBurger($burger_id)
+function getUsersForBurger($usergroup_id)
 {
 	$usersDAO = new UsersDAO();
-	echo json_encode($usersDAO->getUsersForBurger($burger_id));
+	echo json_encode($usersDAO->getUsersForBurger($usergroup_id));
 	exit();
 }
 

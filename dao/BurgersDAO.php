@@ -34,13 +34,11 @@ class BurgersDAO
     {
         $sql = "SELECT * 
                 FROM jitb_burgers
-                WHERE usergroup_id = :usergroup_id
-                RIGHT JOIN jitb_users
-                ON jitb_burgers.usergroup_id=jitb_users.usergroup_id";
+                WHERE usergroup_id = :usergroup_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':usergroup_id', $usergroup_id);
         if($stmt->execute()){
-            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            $burger = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burger)){
                 return $burger;
             }
@@ -54,8 +52,9 @@ class BurgersDAO
                 FROM jitb_burgers
                 WHERE taste_id = :taste_id";
         $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':taste_id', $taste_id);
         if($stmt->execute()){
-            $burgers = $stmt->fetch(PDO::FETCH_ASSOC);
+            $burgers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burgers)){
                 return $burgers;
             }
@@ -70,7 +69,7 @@ class BurgersDAO
                 WHERE vegi = 1";
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute()){
-            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            $burger = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burger)){
                 return $burger;
             }
@@ -86,7 +85,7 @@ class BurgersDAO
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':taste', $taste);
         if($stmt->execute()){
-            $burger = $stmt->fetch(PDO::FETCH_ASSOC);
+            $burger = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burger)){
                 return $burger;
             }

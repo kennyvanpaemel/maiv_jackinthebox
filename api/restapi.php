@@ -14,18 +14,19 @@ require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'TastesDAO.php';
 
 $app = new Slim();
 
-$app->get('/burgers','getAllBurgers');//
-$app->get('/users','getAllUsers');//
-$app->get('/ingredients','getAllIngredients');//
-$app->get('/comments','getAllComments');//
-$app->get('/tastes','getAllTastes');//
+$app->get('/burgers','getAllBurgers');//--
+$app->get('/users','getAllUsers');//--
+$app->get('/ingredients','getAllIngredients');//--
+$app->get('/comments','getAllComments');//--
+$app->get('/tastes','getAllTastes');//--
 
-$app->get('/burgers/user/:user_id','getBurgerForUser');//
-$app->get('/users/burger/:usergroup_id','getUsersForBurger');//
-$app->get('/burgers/taste/:taste_id','getBurgersByTaste');
-$app->get('/burgers/vegi','getVegiBurgers');//
+$app->get('/burgers/user/:usergroup_id','getBurgerForUser');//--
+$app->get('/users/burger/:burger_id','getUsersForBurger');//--
+$app->get('/burgers/taste/:taste','getBurgersByTaste');//--
+$app->get('/burgers/vegi','getVegiBurgers');//--
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
-$app->get('/ingredients/:ingredient_id','getIngredientById');//
+$app->get('/ingredients/:ingredient_id','getIngredientById');//--
+$app->get('/comments/:burger_id','getCommentsForBurger');//--
 
 $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
@@ -77,17 +78,17 @@ function getAllTastes()
 	exit();
 }
 
-function getBurgerForUser($user_id)
+function getBurgerForUser($usergroup_id)
 {
 	$burgersDAO = new BurgersDAO();
-	echo json_encode($burgersDAO->getBurgerForUser($user_id));
+	echo json_encode($burgersDAO->getBurgerForUser($usergroup_id));
 	exit();
 }
 
-function getUsersForBurger($usergroup_id)
+function getUsersForBurger($burger_id)
 {
 	$usersDAO = new UsersDAO();
-	echo json_encode($usersDAO->getUsersForBurger($usergroup_id));
+	echo json_encode($usersDAO->getUsersForBurger($burger_id));
 	exit();
 }
 
@@ -109,6 +110,13 @@ function getVegiBurgersByTaste($taste)
 {
 	$burgersDAO = new BurgersDAO();
 	echo json_encode($burgersDAO->getVegiBurgersByTaste($taste));
+	exit();
+}
+
+function getCommentsForBurger($burger_id)
+{
+	$commentsDAO = new CommentsDAO();
+	echo json_encode($commentsDAO->getCommentsForBurger($burger_id));
 	exit();
 }
 

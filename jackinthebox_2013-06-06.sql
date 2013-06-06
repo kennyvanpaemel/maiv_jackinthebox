@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.25)
 # Database: jackinthebox
-# Generation Time: 2013-06-06 12:28:38 +0000
+# Generation Time: 2013-06-06 13:02:43 +0000
 # ************************************************************
 
 
@@ -125,6 +125,15 @@ CREATE TABLE `jitb_users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `jitb_users` WRITE;
+/*!40000 ALTER TABLE `jitb_users` DISABLE KEYS */;
+
+INSERT INTO `jitb_users` (`user_id`, `username`, `name`, `lastname`, `email`, `password`, `burger_id`)
+VALUES
+	(1,'kennyvanpaemel','kenny','vanpaemel','kenny@kenny.com','test',1);
+
+/*!40000 ALTER TABLE `jitb_users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 

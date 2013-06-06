@@ -14,7 +14,7 @@ class IngredientsDAO
 
     public function getAllIngredients()
     {
-    	$sql = 'SELECT * FROM ingredients';
+    	$sql = 'SELECT * FROM jitb_ingredients';
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute())
         {
@@ -32,7 +32,7 @@ class IngredientsDAO
 
     public function getIngredientById($id)
     {
-        $sql = 'SELECT * FROM ingredients WHERE $id= :id';
+        $sql = 'SELECT * FROM jitb_ingredients WHERE $id= :id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id",$id);
         if($stmt->execute())
@@ -50,7 +50,7 @@ class IngredientsDAO
 
     public function addIngredient($post)
     {
-        $sql = "INSERT INTO ingredients (name,taste,vegi,weight) VALUES(:name,:taste,:vegi,:weight)";
+        $sql = "INSERT INTO jitb_ingredients (name,taste,vegi,weight) VALUES(:name,:taste,:vegi,:weight)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);

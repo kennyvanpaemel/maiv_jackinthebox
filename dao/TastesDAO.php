@@ -14,7 +14,7 @@ class TastesDAO
 
     public function getAllTastes()
     {
-    	$sql = 'SELECT * FROM tastes';
+    	$sql = 'SELECT * FROM jitb_tastes';
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute())
         {

@@ -14,7 +14,7 @@ class UsersDAO
 
     public function getAllUsers()
     {
-    	$sql = 'SELECT * FROM users';
+    	$sql = 'SELECT * FROM jitb_users';
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute())
         {
@@ -33,7 +33,7 @@ class UsersDAO
     public function getUsersForBurger($burger_id)
     {
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_users
                 WHERE burger_id = :burger_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':burger_id', $burger_id);
@@ -48,7 +48,7 @@ class UsersDAO
 
     public function getLastInsertedUser($user_id){
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_users
                 WHERE user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':user_id', $user_id);
@@ -63,7 +63,7 @@ class UsersDAO
 
     public function addUser($post)
     {
-        $sql = "INSERT INTO users (name,lastname,email) VALUES(:name,:lastname,:email)";
+        $sql = "INSERT INTO jitb_users (name,lastname,email) VALUES(:name,:lastname,:email)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":lastname",$post['lastname']);

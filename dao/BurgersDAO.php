@@ -14,7 +14,7 @@ class BurgersDAO
 
     public function getAllBurgers()
     {
-    	$sql = 'SELECT * FROM burgers ORDER BY rating DESC';
+    	$sql = 'SELECT * FROM jitb_burgers ORDER BY rating DESC';
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute())
         {
@@ -33,7 +33,7 @@ class BurgersDAO
     public function getBurgerForUser($user_id)
     {
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_burgers
                 WHERE user_id = :user_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':user_id', $user_id);
@@ -49,7 +49,7 @@ class BurgersDAO
     public function getBurgersByTaste($taste_id)
     {
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_burgers
                 WHERE taste_id = :taste_id";
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute()){
@@ -64,7 +64,7 @@ class BurgersDAO
     public function getVegiBurgers()
     {
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_burgers
                 WHERE vegi = 1";
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute()){
@@ -79,7 +79,7 @@ class BurgersDAO
     public function getVegiBurgersByTaste($taste)
     {
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_burgers
                 WHERE vegi = 1 AND taste= :taste";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':taste', $taste);
@@ -94,7 +94,7 @@ class BurgersDAO
 
     public function updateBurger($burger_id,$post)
     {
-        $sql = 'UPDATE burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE burger_id= :burger_id';
+        $sql = 'UPDATE jitb_burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE burger_id= :burger_id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);
@@ -109,7 +109,7 @@ class BurgersDAO
 
     public function updateBurgerRating($burger_id,$rating)
     {
-        $sql = 'UPDATE burgers SET rating= :rating WHERE burger_id= :burger_id';
+        $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE burger_id= :burger_id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":burger_id",$burger_id);
         $stmt->bindValue(":rating",$rating);
@@ -121,7 +121,7 @@ class BurgersDAO
 
     public function getLastInsertedBurger($burger_id){
         $sql = "SELECT * 
-                FROM burgers
+                FROM jitb_burgers
                 WHERE burger_id = :burger_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':burger_id', $burger_id);
@@ -136,7 +136,7 @@ class BurgersDAO
 
     public function addBurger($post)
     {
-        $sql = "INSERT INTO destinations (name,taste,rating,weight) VALUES(:name,:taste,:rating,:weight)";
+        $sql = "INSERT INTO jitb_burgers (name,taste,rating,weight) VALUES(:name,:taste,:rating,:weight)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);

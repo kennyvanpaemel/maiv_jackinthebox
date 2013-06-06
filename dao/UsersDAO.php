@@ -30,13 +30,15 @@ class UsersDAO
 
     }
 
-    public function getUsersForBurger($burger_id)
+    public function getUsersForBurger($usergroup_id)
     {
         $sql = "SELECT * 
                 FROM jitb_users
-                WHERE burger_id = :burger_id";
+                WHERE usergroup_id = :usergroup_id
+                RIGHT JOIN jitb_burgers
+                ON jitb_users.usergroup_id=jitb_burgers.usergroup_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':burger_id', $burger_id);
+        $stmt->bindValue(':usergroup_id', $usergroup_id);
         if($stmt->execute()){
             $users = $stmt->fetch(PDO::FETCH_ASSOC);
             if(!empty($users)){

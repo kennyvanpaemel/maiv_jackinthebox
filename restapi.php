@@ -20,9 +20,9 @@ $app->get('/ingredients','getAllIngredients');//
 $app->get('/comments','getAllComments');//
 $app->get('/tastes','getAllTastes');//
 
-$app->get('/burgers/:user_id','getBurgerForUser');//
-$app->get('/users/:usergroup_id','getUsersForBurger');//
-$app->get('/burgers/:taste_id','getBurgersByTaste');
+$app->get('/burgers/user/:user_id','getBurgerForUser');//
+$app->get('/users/burger/:usergroup_id','getUsersForBurger');//
+$app->get('/burgers/taste/:taste_id','getBurgersByTaste');
 $app->get('/burgers/vegi','getVegiBurgers');//
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
 $app->get('/ingredients/:ingredient_id','getIngredientById');//

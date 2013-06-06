@@ -32,7 +32,7 @@ class IngredientsDAO
 
     public function getIngredientById($id)
     {
-        $sql = 'SELECT * FROM jitb_ingredients WHERE $id= :id';
+        $sql = 'SELECT * FROM jitb_ingredients WHERE ingredient_id= :id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id",$id);
         if($stmt->execute())

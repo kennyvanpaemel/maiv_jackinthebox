@@ -27,7 +27,22 @@ class UsersDAO
         }
 
         return array();
+    }
 
+    public function getUserByUsername($username){
+        $sql = "SELECT *
+                FROM jitb_users
+                WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":username",$username);
+        if($stmt->execute())
+        {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($user)){
+                return $user;
+            }
+        }
+        return array();
     }
 
     public function getUsersForBurger($burger_id)

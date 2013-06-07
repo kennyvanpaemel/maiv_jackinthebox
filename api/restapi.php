@@ -16,6 +16,7 @@ $app = new Slim();
 
 $app->get('/burgers','getAllBurgers');//--
 $app->get('/users','getAllUsers');//--
+$app->get('/users/:username','getUserByUsername');
 $app->get('/ingredients','getAllIngredients');//--
 $app->get('/comments','getAllComments');//--
 $app->get('/tastes','getAllTastes');//--
@@ -49,6 +50,12 @@ function getAllUsers()
 	$usersDAO = new UsersDAO();
 	echo json_encode($usersDAO->getAllUsers());
 	exit();
+}
+
+function getUserByUsername($username){
+    $usersDAO = new UsersDAO();
+    echo json_encode($usersDAO->getUserByUsername($username));
+    exit();
 }
 
 function getAllIngredients()

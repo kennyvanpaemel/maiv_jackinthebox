@@ -29,6 +29,22 @@ class UsersDAO
         return array();
     }
 
+    public function getUserByEmail($email){
+        $sql = "SELECT *
+                FROM jitb_users
+                WHERE email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":email",$email);
+        if($stmt->execute())
+        {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($user)){
+                return $user;
+            }
+        }
+        return array();
+    }
+
     public function getUserByUsername($username){
         $sql = "SELECT *
                 FROM jitb_users

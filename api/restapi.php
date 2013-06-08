@@ -17,6 +17,7 @@ $app = new Slim();
 $app->get('/burgers','getAllBurgers');//--
 $app->get('/users','getAllUsers');//--
 $app->get('/users/:username','getUserByUsername');
+$app->get('/users/mail/:email','sendUserDataToUser');
 $app->get('/ingredients','getAllIngredients');//--
 $app->get('/comments','getAllComments');//--
 $app->get('/tastes','getAllTastes');//--
@@ -55,6 +56,36 @@ function getAllUsers()
 function getUserByUsername($username){
     $usersDAO = new UsersDAO();
     echo json_encode($usersDAO->getUserByUsername($username));
+    exit();
+}
+
+function sendUserDataToUser($email){
+    $usersDAO = new UsersDAO();
+    $user = $usersDAO->getUserByEmail($email);
+    if($user != null){
+        $mail  = '<html><head></head><body>';
+
+        $mail .= 'Dear burgerlover,<br/><br/>';
+        $mail .= 'You recently asked us to sent you your personal logindata.<br/>';
+        $mail .= "Because of privacy reasons we aren't allowed to sent you your password.<br/>";
+        $mail .= 'Username: '+$user['username'];
+        $mail .= '<br/><br/>';
+        $mail .= "In case you really can't recall your password you can contact our customer service.<br/>";
+        $mail .= "Send us a mail and we'll reset your password.<br/>";
+        $mail .= '<a href="mailto:support@jitbflavoursavour.com?Subject=JITB%20support">Jack In The Box Customer Support</a><br/>';
+        $mail .= '<br/><br/><br/>Greetings,&nbsp; <br/>Jack In The Box Technical Service<br/><br/>';
+
+        $mail  .= '</body></html>';
+
+        $header = 'From: Jack In The Box <no-reply@jackinthebox.com>' . "\r\n" .'X-Mailer: PHP/' . phpversion();
+        $header .= 'MIME-Version: 1.0' . "\r\n";
+        $header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        mail($user['email'], 'Jack In The Box: Logingegevens', $mail, $header);
+        echo $user['email'];
+    }else{
+        echo '';
+    }
     exit();
 }
 

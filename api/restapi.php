@@ -28,6 +28,7 @@ $app->get('/burgers/taste/:taste','getBurgersByTaste');//--
 $app->get('/burgers/vegi','getVegiBurgers');//--
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
 $app->get('/ingredients/:ingredient_id','getIngredientById');//--
+$app->get('/ingredients/:user_id','getIngredientForUser');
 $app->get('/comments/:burger_id','getCommentsForBurger');//--
 
 $app->post('/burgers','addBurger');//
@@ -155,6 +156,13 @@ function getCommentsForBurger($burger_id)
 {
 	$commentsDAO = new CommentsDAO();
 	echo json_encode($commentsDAO->getCommentsForBurger($burger_id));
+	exit();
+}
+
+function getIngredientsForUser($user_id)
+{
+	$usersDAO = new UsersDAO();
+	echo json_encode($usersDAO->getIngredientsForUser($user_id));
 	exit();
 }
 

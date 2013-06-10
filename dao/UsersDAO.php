@@ -77,6 +77,24 @@ class UsersDAO
         return array();
     }
 
+     public function getIngredientsForUser($user_id)
+    {
+        $sql = 'SELECT * FROM jitb_users WHERE id= :user_id';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":user_id",$user_id);
+        if($stmt->execute())
+        {
+            $ingredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!empty($ingredients))
+            { 
+                return $ingredients;
+            }
+        }
+
+        return array();
+    }
+
     public function getLastInsertedUser($user_id){
         $sql = "SELECT * 
                 FROM jitb_users

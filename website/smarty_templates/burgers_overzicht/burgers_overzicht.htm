@@ -1,0 +1,63 @@
+<article id="#burgers">
+	
+{foreach from=$burger_data item=data }
+<section class="burger_post">
+
+	<div class="head">
+		
+		<img src="" alt="flag_img">
+
+		<h2>{$data.name}</h2>
+		<h1>{$data.username}</h1>
+
+	</div>
+
+	<div class="info">
+
+		<ul class="ingredients">
+
+			<li class="ingredient"></li>
+			<li class="ingredient"></li>
+
+		</ul>
+
+		<img src="" alt="burger_img">
+
+	</div>
+
+	<div class="buttons">
+
+		<div class="burger_up_btn">
+			<p class="vote_count">{$data.rating}</p>
+			<img src="" alt="burger_up_img">
+		</div>
+
+		<div class="comment_btn">
+			<p class="comment_count"></p>
+			<img src="" alt="comment_img">
+		</div>
+
+	</div>
+
+	<div class="comments">
+
+		<div class="comment">
+
+		{foreach from=$comments item=comment }
+			<img src="" alt="taste_img">
+			<h2>{$comment.username}</h2>
+			<p>{$comment.comment}</p>
+		{/foreach}
+
+		</div>
+
+		<p class="all_comments_btn">Show all comments</p>
+
+	</div>
+
+</section>
+
+{/foreach}
+
+
+</article>

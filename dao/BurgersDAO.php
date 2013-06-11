@@ -46,13 +46,13 @@ class BurgersDAO
         return array();
     }
 
-    public function getBurgersByTaste($taste_id)
+    public function getBurgersByTaste($taste)
     {
         $sql = "SELECT * 
                 FROM jitb_burgers
-                WHERE taste_id = :taste_id";
+                WHERE taste = :taste";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':taste_id', $taste_id);
+        $stmt->bindValue(':taste', $taste);
         if($stmt->execute()){
             $burgers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burgers)){

@@ -27,12 +27,14 @@ $app->get('/users/burger/:burger_id','getUsersForBurger');//--
 $app->get('/burgers/taste/:taste','getBurgersByTaste');//--
 $app->get('/burgers/vegi','getVegiBurgers');//--
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
-$app->get('/ingredients/:ingredient_id','getIngredientById');//--
+$app->get('/ingredients/id/:ingredient_id','getIngredientById');//--
 $app->get('/ingredients/:user_id','getIngredientForUser');
+$app->get('/ingredients/taste/:taste','getIngredientsByTaste');
 $app->get('/comments/:burger_id','getCommentsForBurger');//--
 
 $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
+$app->post('/users/update','updateUser');//
 $app->post('/comments/:burger_id/:user_id','addComment');//
 
 $app->put('/burgers/:burger_id','updateBurger');//
@@ -159,11 +161,18 @@ function getCommentsForBurger($burger_id)
 	exit();
 }
 
-function getIngredientsForUser($user_id)
+function getIngredientForUser($user_id)
 {
 	$usersDAO = new UsersDAO();
 	echo json_encode($usersDAO->getIngredientsForUser($user_id));
 	exit();
+}
+
+function getIngredientsByTaste($taste)
+{
+    $ingredientsDAO = new IngredientsDAO();
+    echo json_encode($ingredientsDAO->getIngredientsByTaste($taste));
+    exit();
 }
 
 function addBurger()
@@ -176,10 +185,19 @@ function addBurger()
 
 function addUser()
 {
-	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
+    error_log("add user");
+    $post = Slim::getInstance()->request()->post();
 	$usersDAO = new UsersDAO();
 	echo json_encode($usersDAO->addUser($post));
 	exit();
+}
+
+function updateUser(){
+    error_log("update user");
+    $post = Slim::getInstance()->request()->post();
+    $usersDAO = new UsersDAO();
+    echo json_encode($usersDAO->updateUser($post));
+    exit();
 }
 
 function addComment($burger_id,$user_id)

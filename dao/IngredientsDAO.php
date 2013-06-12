@@ -32,7 +32,7 @@ class IngredientsDAO
 
     public function getIngredientById($id)
     {
-        $sql = 'SELECT * FROM jitb_ingredients WHERE ingredient_id= :id';
+        $sql = 'SELECT * FROM jitb_ingredients WHERE id = :id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id",$id);
         if($stmt->execute())
@@ -41,6 +41,25 @@ class IngredientsDAO
 
             if(!empty($ingredient))
             { 
+                return $ingredient;
+            }
+        }
+
+        return array();
+    }
+
+    public function getIngredientsByTaste($taste)
+    {
+        $sql = 'SELECT * FROM jitb_ingredients WHERE taste= :taste OR taste = :taste2';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":taste",$taste);
+        $stmt->bindValue(":taste",'neutral');
+        if($stmt->execute())
+        {
+            $ingredient = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!empty($ingredient))
+            {
                 return $ingredient;
             }
         }

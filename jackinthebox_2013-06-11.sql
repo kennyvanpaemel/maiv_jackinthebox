@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 10 Jun 2013 om 20:48
+-- Genereertijd: 11 Jun 2013 om 14:31
 -- Serverversie: 5.5.9
 -- PHP-Versie: 5.3.6
 
@@ -98,18 +98,21 @@ CREATE TABLE `jitb_comments` (
 --
 
 CREATE TABLE `jitb_ingredients` (
-  `ingredient_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `taste` varchar(255) DEFAULT NULL,
-  `vegi` varchar(255) DEFAULT NULL,
+  `vegi` tinyint(4) NOT NULL,
   `weight` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ingredient_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_ingredients`
 --
 
+INSERT INTO `jitb_ingredients` VALUES(1, 'Honey bbq sauce', 'sweet', 0, 15, 'honeybbqsauce');
+INSERT INTO `jitb_ingredients` VALUES(2, 'Pineapple', 'sweet', 1, 20, 'pineapple');
 
 -- --------------------------------------------------------
 

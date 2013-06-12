@@ -24,6 +24,7 @@ $app->get('/tastes','getAllTastes');//--
 
 $app->get('/burgers/user/:usergroup_id','getBurgerForUser');//--
 $app->get('/users/burger/:burger_id','getUsersForBurger');//--
+$app->get('/users/username/:username','getBurgerIdByUsername');
 $app->get('/burgers/taste/:taste','getBurgersByTaste');//--
 $app->get('/burgers/vegi','getVegiBurgers');//--
 $app->get('/burgers/vegi/:taste','getVegiBurgersByTaste');//
@@ -124,6 +125,12 @@ function getBurgerForUser($usergroup_id)
 	$burgersDAO = new BurgersDAO();
 	echo json_encode($burgersDAO->getBurgerForUser($usergroup_id));
 	exit();
+}
+
+function getBurgerIdByUsername($username){
+    $usersDAO = new BurgersDAO();
+    echo json_encode($usersDAO->getBurgerForUser($usergroup_id));
+    exit();
 }
 
 function getUsersForBurger($burger_id)

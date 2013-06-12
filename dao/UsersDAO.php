@@ -29,6 +29,10 @@ class UsersDAO
         return array();
     }
 
+    public function getBurgerIdByUsername($username){
+
+    }
+
     public function getUserByEmail($email){
         $sql = "SELECT *
                 FROM jitb_users

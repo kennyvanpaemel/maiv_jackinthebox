@@ -128,8 +128,8 @@ function getBurgerForUser($usergroup_id)
 }
 
 function getBurgerIdByUsername($username){
-    $usersDAO = new BurgersDAO();
-    echo json_encode($usersDAO->getBurgerForUser($usergroup_id));
+    $usersDAO = new UsersDAO();
+    echo json_encode($usersDAO->getBurgerIdByUsername($username));
     exit();
 }
 

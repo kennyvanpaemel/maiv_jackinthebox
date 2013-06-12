@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 11 Jun 2013 om 14:31
+-- Genereertijd: 12 Jun 2013 om 20:04
 -- Serverversie: 5.5.9
 -- PHP-Versie: 5.3.6
 
@@ -105,7 +105,7 @@ CREATE TABLE `jitb_ingredients` (
   `weight` int(11) DEFAULT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_ingredients`
@@ -113,6 +113,8 @@ CREATE TABLE `jitb_ingredients` (
 
 INSERT INTO `jitb_ingredients` VALUES(1, 'Honey bbq sauce', 'sweet', 0, 15, 'honeybbqsauce');
 INSERT INTO `jitb_ingredients` VALUES(2, 'Pineapple', 'sweet', 1, 20, 'pineapple');
+INSERT INTO `jitb_ingredients` VALUES(5, 'Lettuce', 'neutral', 1, 10, 'lettuce');
+INSERT INTO `jitb_ingredients` VALUES(6, 'Pickle', 'sour', 1, 15, 'pickle');
 
 -- --------------------------------------------------------
 
@@ -142,19 +144,19 @@ INSERT INTO `jitb_tastes` VALUES(4, 'zout');
 --
 
 CREATE TABLE `jitb_users` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `burger_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `burger_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_users`
 --
 
-INSERT INTO `jitb_users` VALUES(1, 'kennyvanpaemel', 'Kenny', 'Vanpaemel', 'kenny@kenny.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 1);
-INSERT INTO `jitb_users` VALUES(2, 'bassie', 'Bastiaan', 'Andriessen', 'bastiaan.andriessen@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 1);
+INSERT INTO `jitb_users` VALUES(1, 'bassie', 'bastiaan', 'andriessen', 'bastiaan.andriessen@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 1);
+INSERT INTO `jitb_users` VALUES(20, 'bastiaan', 'Qsdf', 'Qsdf', 'bastiaan@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0);

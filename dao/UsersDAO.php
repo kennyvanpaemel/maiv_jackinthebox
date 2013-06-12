@@ -30,7 +30,20 @@ class UsersDAO
     }
 
     public function getBurgerIdByUsername($username){
-
+        $sql = "SELECT burger_id
+                FROM jitb_users
+                WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":username",$username);
+        if($stmt->execute())
+        {
+            $burgerid = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burgerid))
+            {
+                return $burgerid;
+            }
+        }
+        return array();
     }
 
     public function getUserByEmail($email){

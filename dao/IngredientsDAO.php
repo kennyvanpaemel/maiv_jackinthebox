@@ -53,7 +53,7 @@ class IngredientsDAO
         $sql = 'SELECT * FROM jitb_ingredients WHERE taste= :taste OR taste = :taste2';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":taste",$taste);
-        $stmt->bindValue(":taste",'neutral');
+        $stmt->bindValue(":taste2",'neutral');
         if($stmt->execute())
         {
             $ingredient = $stmt->fetchAll(PDO::FETCH_ASSOC);

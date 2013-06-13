@@ -40,7 +40,7 @@ $app->post('/users/update','updateUser');//
 $app->post('/comments/:burger_id/:user_id','addComment');//
 
 $app->put('/burgers/:burger_id','updateBurger');//
-$app->put('/burgers/:burger_id/:rating','updateBurgerRating');//
+$app->put('/burgers/rating/:burger_id','updateBurgerRating');//
 
 $app->run();
 
@@ -231,9 +231,9 @@ function updateBurger($burger_id)
 	exit();
 }
 
-function updateBurgerRating($burger_id,$rating)
+function updateBurgerRating($burger_id)
 {
 	$burgersDAO = new BurgersDAO();
-	echo json_encode($burgersDAO->updateRating($burger_id,$rating));
+	echo json_encode($burgersDAO->updateBurgerRating($burger_id));
 	exit();
 }

@@ -108,12 +108,11 @@ class BurgersDAO
         }
     }
 
-    public function updateBurgerRating($burger_id,$rating)
+    public function updateBurgerRating($burger_id)
     {
-        $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE burger_id= :burger_id';
+        $sql = 'UPDATE jitb_burgers SET rating= rating+1 WHERE burger_id= :burger_id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":burger_id",$burger_id);
-        $stmt->bindValue(":rating",$rating);
         if($stmt->execute())
         {
             return $this;

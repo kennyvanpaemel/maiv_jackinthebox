@@ -29,18 +29,18 @@ class UsersDAO
         return array();
     }
 
-    public function getBurgerIdByUsername($username){
-        $sql = "SELECT burger_id
+    public function getFinalSaveByUsername($username){
+        $sql = "SELECT burger_final_save
                 FROM jitb_users
                 WHERE username = :username";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":username",$username);
         if($stmt->execute())
         {
-            $burgerid = $stmt->fetch(PDO::FETCH_ASSOC);
-            if(!empty($burgerid))
+            $burgerfinalsave = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($burgerfinalsave))
             {
-                return $burgerid;
+                return $burgerfinalsave;
             }
         }
         return array();

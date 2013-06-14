@@ -167,15 +167,13 @@ class UsersDAO
 
     public function addUser($post)
     {
-        $sql = "INSERT INTO jitb_users (username,firstname,lastname,email,password,vegi,taste) VALUES(:username,:firstname,:lastname,:email,:password,:vegi,:taste)";
+        $sql = "INSERT INTO jitb_users (username,name,lastname,email,password) VALUES(:username,:name,:lastname,:email,:password)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":username",$post['username']);
-        $stmt->bindValue(":firstname",$post['firstname']);
+        $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":lastname",$post['lastname']);
         $stmt->bindValue(":email",$post['email']);
         $stmt->bindValue(":password",$post['password']);
-        $stmt->bindValue(":vegi",$post['vegi']);
-        $stmt->bindValue(":taste",$post['taste']);
         if($stmt->execute()){
             return $post;
         }

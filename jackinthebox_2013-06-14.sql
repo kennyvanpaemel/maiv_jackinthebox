@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 14 Jun 2013 om 21:37
+-- Genereertijd: 14 Jun 2013 om 22:18
 -- Serverversie: 5.5.9
 -- PHP-Versie: 5.3.6
 
@@ -25,13 +25,15 @@ CREATE TABLE `jitb_burgers` (
   `taste` varchar(255) DEFAULT NULL,
   `vegi` int(11) DEFAULT NULL,
   `rating` bigint(11) NOT NULL DEFAULT '0',
+  `added_ingredients_ids` varchar(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_burgers`
 --
 
+INSERT INTO `jitb_burgers` VALUES(36, NULL, 'sweet', 0, 0, '2');
 
 -- --------------------------------------------------------
 
@@ -110,15 +112,17 @@ CREATE TABLE `jitb_users` (
   `burger_id` int(11) NOT NULL DEFAULT '0',
   `burger_final_save` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_users`
 --
 
 INSERT INTO `jitb_users` VALUES(1, 'bassie', 'bastiaan', 'andriessen', 'bastiaan.andriessen@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
-INSERT INTO `jitb_users` VALUES(20, 'bastiaan', 'Qsdf', 'Qsdf', 'bastiaan@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
+INSERT INTO `jitb_users` VALUES(20, 'bastiaan', 'Bastiaan', 'Andriessen', 'bastiaan@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 36, 0);
 INSERT INTO `jitb_users` VALUES(21, 'blub', 'Bqsdf', 'Qsdf', 'qsdf@qsdf.sdf.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
 INSERT INTO `jitb_users` VALUES(22, 'kenny', 'Kenny', 'Blub', 'kenny@kenny.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
 INSERT INTO `jitb_users` VALUES(23, 'derp', 'Test', 'Tester', 'bastiaan.d@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
 INSERT INTO `jitb_users` VALUES(24, 'bqsdf', 'Bqsdf', 'Qsdf', 'bfdqs@herpes.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
+INSERT INTO `jitb_users` VALUES(25, 'derper', 'Derper', 'Bas', 'derp@derper.herp', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);
+INSERT INTO `jitb_users` VALUES(26, 'derp1', 'Derpie', 'Derp', 'bas@bas.bas', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0);

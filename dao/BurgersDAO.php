@@ -145,13 +145,13 @@ class BurgersDAO
         print_r($post);
         $trace = ob_get_clean();
         error_log($trace);
-        $sql = "INSERT INTO jitb_burgers (taste,vegi) VALUES(:taste,:vegi)";
+        $sql = "INSERT INTO jitb_burgers (taste,vegi,added_ingredients_ids) VALUES(:taste,:vegi,:added_ingredients_ids)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":taste",$post['taste']);
         $stmt->bindValue(":vegi",$post['vegi']);
+        $stmt->bindValue(":added_ingredients_ids",$post['added_ingredients_ids']);
         if($stmt->execute()){
             return $this->pdo->lastInsertId();
-            //return $this;
         }
         return false;
     }

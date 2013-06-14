@@ -37,6 +37,7 @@ $app->get('/comments/:burger_id','getCommentsForBurger');//--
 $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
 $app->post('/users/update','updateUser');//
+$app->post('/users/update/burger','updateBurgerStatus');//
 $app->post('/comments/:burger_id/:user_id','addComment');//
 
 $app->put('/burgers/:burger_id','updateBurger');//
@@ -192,6 +193,11 @@ function getIngredientsByTasteAndVegi($taste){
 function addBurger()
 {
     error_log("add burger");
+    ob_start();
+    print_r($_GET);
+    print_r($_POST);
+    $trace = ob_get_clean();
+    error_log($trace);
     $post = Slim::getInstance()->request()->post();
     $burgersDAO = new BurgersDAO();
     echo json_encode($burgersDAO->addBurger($post));
@@ -212,6 +218,19 @@ function updateUser(){
     $post = Slim::getInstance()->request()->post();
     $usersDAO = new UsersDAO();
     echo json_encode($usersDAO->updateUser($post));
+    exit();
+}
+
+function updateBurgerStatus(){
+    error_log("update burger data from user");
+    ob_start();
+    print_r($_GET);
+    print_r($_POST);
+    $trace = ob_get_clean();
+    error_log($trace);
+    $post = Slim::getInstance()->request()->post();
+    $usersDAO = new UsersDAO();
+    echo json_encode($usersDAO->updateBurgerStatus($post));
     exit();
 }
 

@@ -94,6 +94,22 @@ class UsersDAO
         return array();
     }
 
+    public function updateBurgerStatus($post){
+        $sql = "UPDATE jitb_users SET burger_id = :burger_id,
+                                      burger_final_save = :burger_final_save
+                                      WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":burger_id",$post['burger_id']);
+        $stmt->bindValue(":burger_final_save",$post['burger_final_save']);
+        $stmt->bindValue(":username",$post['username']);
+
+        if($stmt->execute()){
+            return true;
+        } else {
+            throw new Exception("Your user data couldn't be updated.");
+        }
+    }
+
     public function updateUser($post){
         $sql = "UPDATE jitb_users SET username = :username,
                                       name = :name,
@@ -112,7 +128,7 @@ class UsersDAO
         if($stmt->execute()){
             return true;
         } else {
-            throw new Exception("Your email address couldn't be changed.");
+            throw new Exception("Your user data couldn't be updated.");
         }
     }
 

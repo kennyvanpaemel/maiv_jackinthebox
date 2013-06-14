@@ -93,43 +93,45 @@ class BurgersDAO
         return array();
     }
 
-    public function updateBurger($burger_id,$post)
+    public function updateBurger($post)
     {
-        $sql = 'UPDATE jitb_burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE burger_id= :burger_id';
+        $sql = 'UPDATE jitb_burgers SET name= :name, taste= :taste, rating= :rating, weight= :weight WHERE id= :id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);
         $stmt->bindValue(":rating",$post['rating']);
         $stmt->bindValue(":weight",$post['weight']);
-        $stmt->bindValue(":burger_id",$post['burger_id']);
+        $stmt->bindValue(":id",$post['id']);
         if($stmt->execute())
         {
             return $this;
         }
+        return array();
     }
 
-    public function updateBurgerRating($burger_id,$rating)
+    public function updateBurgerRating($id,$rating)
     {
-        $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE burger_id= :burger_id';
+        $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE id= :id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":burger_id",$burger_id);
+        $stmt->bindValue(":id",$id);
         $stmt->bindValue(":rating",$rating);
         if($stmt->execute())
         {
             return $this;
         }
+        return array();
     }
 
-    public function getLastInsertedBurger($burger_id){
+    public function getLastInsertedBurger($id){
         $sql = "SELECT * 
                 FROM jitb_burgers
-                WHERE burger_id = :burger_id";
+                WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':burger_id', $burger_id);
+        $stmt->bindValue(':id', $id);
         if($stmt->execute()){
-            $burger_id = $stmt->fetch(PDO::FETCH_ASSOC);
-            if(!empty($burger_id)){
-                return $burger_id;
+            $id = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(!empty($id)){
+                return $id;
             }
         }
         return array();
@@ -137,14 +139,18 @@ class BurgersDAO
 
     public function addBurger($post)
     {
-        $sql = "INSERT INTO jitb_burgers (name,taste,rating,weight) VALUES(:name,:taste,:rating,:weight)";
+        error_log("[BurgersDAO] Add Burger");
+        ob_start();
+        print_r($post);
+        $trace = ob_get_clean();
+        error_log($trace);
+        $sql = "INSERT INTO jitb_burgers (taste,vegi) VALUES(:taste,:vegi)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);
-        $stmt->bindValue(":rating",$post['rating']);
-        $stmt->bindValue(":weight",$post['weight']);
+        $stmt->bindValue(":vegi",$post['vegi']);
         if($stmt->execute()){
-            return $this;
+            return $this->pdo->lastInsertId();
+            //return $this;
         }
         return false;
     }

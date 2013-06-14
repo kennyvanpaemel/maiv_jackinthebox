@@ -113,8 +113,9 @@ class BurgersDAO
     {
         $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE id= :id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":id",$id);
         $stmt->bindValue(":rating",$rating);
+        $stmt->bindValue(":id",$id);
+
         if($stmt->execute())
         {
             return $this;

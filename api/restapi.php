@@ -40,6 +40,7 @@ $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
 $app->post('/users/update','updateUser');//
 $app->post('/users/update/burger','updateBurgerStatus');//
+$app->post('/users/addedtogroup','updateAddedToGroup');
 $app->post('/comments/:burger_id/:user_id','addComment');//
 $app->post('/burgeringredient','addBurgerIngredient');
 
@@ -262,6 +263,14 @@ function addBurgerIngredient(){
     $post = Slim::getInstance()->request()->post();
     $burgerIngredientsDAO = new BurgersIngredientsDAO();
     echo json_encode($burgerIngredientsDAO->addBurgerIngredient($post));
+    exit();
+}
+
+function updateAddedToGroup(){
+    error_log("update user: added to group");
+    $post = Slim::getInstance()->request()->post();
+    $usersDAO = new UsersDAO();
+    echo json_encode($usersDAO->updateAddedToGroup($post));
     exit();
 }
 

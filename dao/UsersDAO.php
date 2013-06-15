@@ -108,6 +108,22 @@ class UsersDAO
         if($stmt->execute()){
             return true;
         } else {
+            throw new Exception("Your user burgerdata couldn't be updated.");
+        }
+    }
+
+    public function updateAddedToGroup($post){
+        $sql = "UPDATE jitb_users SET burger_id = :burger_id,
+                                      added_to_group = :added_to_group
+                                      WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":burger_id",$post['burger_id']);
+        $stmt->bindValue(":added_to_group",$post['added_to_group']);
+        $stmt->bindValue(":username",$post['username']);
+
+        if($stmt->execute()){
+            return true;
+        } else {
             throw new Exception("Your user data couldn't be updated.");
         }
     }

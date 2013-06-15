@@ -9,7 +9,7 @@ require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'BurgersDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'UsersDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'IngredientsDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'CommentsDAO.php';
-require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'TastesDAO.php';
+require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'BurgersIngredientsDAO.php';
 
 
 $app = new Slim();
@@ -21,8 +21,10 @@ $app->get('/users/mail/:email','sendUserDataToUser');
 $app->get('/ingredients','getAllIngredients');//--
 $app->get('/comments','getAllComments');//--
 $app->get('/tastes','getAllTastes');//--
+$app->get('/burgeringredient/:burger_id','getBurgerIngredientsByBurgerId');
 
 $app->get('/burgers/user/:usergroup_id','getBurgerForUser');//--
+$app->get('/burger/:burger_id','getBurgerByBurgerId');//--
 $app->get('/users/burger/:burger_id','getUsersForBurger');//--
 $app->get('/users/username/:username','getFinalSaveByUsername');
 $app->get('/burgers/taste/:taste','getBurgersByTaste');//--
@@ -39,6 +41,7 @@ $app->post('/users','addUser');//
 $app->post('/users/update','updateUser');//
 $app->post('/users/update/burger','updateBurgerStatus');//
 $app->post('/comments/:burger_id/:user_id','addComment');//
+$app->post('/burgeringredient','addBurgerIngredient');
 
 $app->put('/burgers/:burger_id','updateBurger');//
 $app->put('/burgers/rating/:burger_id','updateBurgerRating');//
@@ -122,11 +125,23 @@ function getAllTastes()
 	exit();
 }
 
+function getBurgerIngredientsByBurgerId($burger_id){
+    $burgersIngredientsDAO = new BurgersIngredientsDAO();
+    echo json_encode($burgersIngredientsDAO->getBurgerIngredientsByBurgerId($burger_id));
+    exit();
+}
+
 function getBurgerForUser($usergroup_id)
 {
 	$burgersDAO = new BurgersDAO();
 	echo json_encode($burgersDAO->getBurgerForUser($usergroup_id));
 	exit();
+}
+
+function getBurgerByBurgerId($burger_id){
+    $burgersDAO = new BurgersDAO();
+    echo json_encode($burgersDAO->getBurgerByBurgerId($burger_id));
+    exit();
 }
 
 function getFinalSaveByUsername($username){
@@ -240,6 +255,14 @@ function addComment($burger_id,$user_id)
 	$commentsDAO = new CommentsDAO();
 	echo json_encode($commentsDAO->addComment($burger_id,$user_id,$post));
 	exit();
+}
+
+function addBurgerIngredient(){
+    error_log("add burgeringredient");
+    $post = Slim::getInstance()->request()->post();
+    $burgerIngredientsDAO = new BurgersIngredientsDAO();
+    echo json_encode($burgerIngredientsDAO->addBurgerIngredient($post));
+    exit();
 }
 
 function updateBurger($burger_id)

@@ -62,6 +62,21 @@ class BurgersDAO
         return array();
     }
 
+    public function getBurgerByBurgerId($burger_id){
+        $sql = "SELECT *
+                FROM jitb_burgers
+                WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $burger_id);
+        if($stmt->execute()){
+            $burger = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($burger)){
+                return $burger;
+            }
+        }
+        return array();
+    }
+
     public function getVegiBurgers()
     {
         $sql = "SELECT * 

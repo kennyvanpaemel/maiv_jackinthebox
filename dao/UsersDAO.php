@@ -96,11 +96,13 @@ class UsersDAO
 
     public function updateBurgerStatus($post){
         $sql = "UPDATE jitb_users SET burger_id = :burger_id,
-                                      burger_final_save = :burger_final_save
+                                      burger_final_save = :burger_final_save,
+                                      added_to_group = :added_to_group
                                       WHERE username = :username";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":burger_id",$post['burger_id']);
         $stmt->bindValue(":burger_final_save",$post['burger_final_save']);
+        $stmt->bindValue(":added_to_group",$post['added_to_group']);
         $stmt->bindValue(":username",$post['username']);
 
         if($stmt->execute()){

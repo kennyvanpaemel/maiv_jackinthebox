@@ -37,7 +37,7 @@ $app->get('/comments/:burger_id','getCommentsForBurger');//--
 $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
 $app->post('/users/update','updateUser');//
-$app->post('/comments/:burger_id/:user_id','addComment');//
+$app->post('/comments/add','addComment');//
 
 $app->put('/burgers/:burger_id','updateBurger');//
 $app->put('/burgers/rating/:burger_id','updateBurgerRating');//
@@ -215,11 +215,11 @@ function updateUser(){
     exit();
 }
 
-function addComment($burger_id,$user_id)
+function addComment()
 {
-	$post = (array) json_decode(Slim::getInstance()->request()->getBody());
+	$post = Slim::getInstance()->request()->post();
 	$commentsDAO = new CommentsDAO();
-	echo json_encode($commentsDAO->addComment($burger_id,$user_id,$post));
+	echo json_encode($commentsDAO->addComment($post));
 	exit();
 }
 

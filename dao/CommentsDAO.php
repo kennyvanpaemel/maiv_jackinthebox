@@ -31,7 +31,7 @@ class CommentsDAO
 
     public function getCommentsForBurger($burger_id)
     {
-        $sql = 'SELECT * FROM jitb_comments WHERE burger_id= :burger_id';
+        $sql = 'SELECT * FROM jitb_comments WHERE burger_id= :burger_id ORDER BY id ASC';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":burger_id",$burger_id);
         if($stmt->execute())
@@ -47,13 +47,13 @@ class CommentsDAO
         return array();
     }
 
-    public function addComment($burger_id,$user_id,$comment)
+    public function addComment($post)
     {
-        $sql = "INSERT INTO jitb_comments (user_id,burger_id,comment) VALUES(:user_id,:burger_id,:comment)";
+        $sql = "INSERT INTO jitb_comments (username,comment,burger_id) VALUES(:username,:comment,:burger_id)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":user_id",$user_id);
-        $stmt->bindValue(":burger_id",$burger_id);
-        $stmt->bindValue(":comment",$comment);
+        $stmt->bindValue(":username",$post['username']);
+        $stmt->bindValue(":comment",$post['comment']);
+        $stmt->bindValue(":burger_id",$post['burger_id']);
         if($stmt->execute()){
             return $this;
         }

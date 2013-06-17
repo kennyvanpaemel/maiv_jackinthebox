@@ -27,11 +27,11 @@ class BurgersIngredientsDAO
 
     public function getBurgerIngredientsByBurgerId($burger_id){
         error_log("[BurgersIngredientsDAO] Get BurgerIngredient By BurgerId");
-        $sql = "SELECT *
+        $sql = "SELECT jitb_burgers.name, jitb_burgers.taste, jitb_burgers.vegi, jitb_burgers.added_ingredients_ids, jitb_burgersingredients.burger_id,  jitb_burgersingredients.ingredient_id, jitb_ingredients.name, jitb_ingredients.url
                 FROM jitb_burgers
                 INNER JOIN jitb_burgersingredients ON jitb_burgers.id = jitb_burgersingredients.burger_id
                 INNER JOIN jitb_ingredients ON jitb_ingredients.id = jitb_burgersingredients.ingredient_id
-                WHERE jitb_burgersingredients.burger_id = :burger_id";
+                WHERE jitb_burgersingredients.burger_id = burger_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':burger_id', $burger_id);
         if($stmt->execute()){

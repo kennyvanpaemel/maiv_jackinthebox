@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 17 Jun 2013 om 11:00
+-- Genereertijd: 17 Jun 2013 om 15:14
 -- Serverversie: 5.5.9
 -- PHP-Versie: 5.3.6
 
@@ -113,6 +113,23 @@ INSERT INTO `jitb_ingredients` VALUES(22, 'Smoked Pork Patty', 'bitter', 0, 'smo
 INSERT INTO `jitb_ingredients` VALUES(23, 'Beef Patty', 'neutral', 0, 'beefpatty');
 INSERT INTO `jitb_ingredients` VALUES(24, 'Cheddar Cheese', 'neutral', 0, 'cheddarcheese');
 INSERT INTO `jitb_ingredients` VALUES(25, 'Sliced Jalapenos', 'spicy', 1, 'slicedjalapenos');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `jitb_qrcodes`
+--
+
+CREATE TABLE `jitb_qrcodes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qrcode` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `jitb_qrcodes`
+--
+
 
 -- --------------------------------------------------------
 

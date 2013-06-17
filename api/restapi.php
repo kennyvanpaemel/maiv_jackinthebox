@@ -10,12 +10,14 @@ require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'UsersDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'IngredientsDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'CommentsDAO.php';
 require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'BurgersIngredientsDAO.php';
+require_once WWW_ROOT. "dao" .DIRECTORY_SEPARATOR. 'QRCodesDAO.php';
 
 
 $app = new Slim();
 
 $app->get('/burgers','getAllBurgers');//--
 $app->get('/users','getAllUsers');//--
+$app->get('/qrcodes','getAllQRCodes');
 $app->get('/users/:username','getUserByUsername');
 $app->get('/users/mail/:email','sendUserDataToUser');
 $app->get('/ingredients','getAllIngredients');//--
@@ -38,6 +40,7 @@ $app->get('/comments/:burger_id','getCommentsForBurger');//--
 
 $app->post('/burgers','addBurger');//
 $app->post('/users','addUser');//
+$app->post('/qrcode','addQRCode');//
 $app->post('/users/update','updateUser');//
 $app->post('/users/update/burger','updateBurgerStatus');//
 $app->post('/users/addedtogroup','updateAddedToGroup');
@@ -61,6 +64,12 @@ function getAllUsers()
 	$usersDAO = new UsersDAO();
 	echo json_encode($usersDAO->getAllUsers());
 	exit();
+}
+
+function getAllQRCodes(){
+    $qrCodesDAO = new QRCodesDAO();
+    echo json_encode($qrCodesDAO->getAllQRCodes());
+    exit();
 }
 
 function getUserByUsername($username){
@@ -227,6 +236,14 @@ function addUser()
 	$usersDAO = new UsersDAO();
 	echo json_encode($usersDAO->addUser($post));
 	exit();
+}
+
+function addQRCode(){
+    error_log("add qrcode");
+    $post = Slim::getInstance()->request()->post();
+    $qrCodesDAO = new QRCodesDAO();
+    echo json_encode($qrCodesDAO->addQRCode($post));
+    exit();
 }
 
 function updateUser(){

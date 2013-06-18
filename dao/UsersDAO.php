@@ -192,7 +192,7 @@ class UsersDAO
         $sql = "INSERT INTO jitb_users (username,name,lastname,email,password) VALUES(:username,:name,:lastname,:email,:password)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":username",$post['username']);
-        $stmt->bindValue(":name",$post['name']);
+        $stmt->bindValue(":name",$post['firstname']);
         $stmt->bindValue(":lastname",$post['lastname']);
         $stmt->bindValue(":email",$post['email']);
         $stmt->bindValue(":password",$post['password']);

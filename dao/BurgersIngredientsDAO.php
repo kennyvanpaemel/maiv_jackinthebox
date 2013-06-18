@@ -31,9 +31,11 @@ class BurgersIngredientsDAO
                 FROM jitb_burgers
                 INNER JOIN jitb_burgersingredients ON jitb_burgers.id = jitb_burgersingredients.burger_id
                 INNER JOIN jitb_ingredients ON jitb_ingredients.id = jitb_burgersingredients.ingredient_id
-                WHERE jitb_burgersingredients.burger_id = burger_id";
+                WHERE jitb_burgersingredients.burger_id = :burger_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':burger_id', $burger_id);
+        $errors = $stmt->errorInfo();
+        error_log($errors[2]);
         if($stmt->execute()){
             $burgers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($burgers)){

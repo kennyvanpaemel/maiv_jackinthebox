@@ -111,6 +111,7 @@ class BurgersDAO
     public function updateBurger($post)
     {
         $sql = 'UPDATE jitb_burgers SET name= :name, taste= :taste, rating= :rating WHERE id= :id';
+<<<<<<< HEAD
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);
@@ -282,6 +283,7 @@ class BurgersDAO
     public function updateBurger($post)
     {
         $sql = 'UPDATE jitb_burgers SET name= :name, taste= :taste, rating= :rating WHERE id= :id';
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":name",$post['name']);
         $stmt->bindValue(":taste",$post['taste']);
@@ -289,10 +291,23 @@ class BurgersDAO
         $stmt->bindValue(":id",$post['id']);
         if($stmt->execute())
         {
-            return $this;
+            return true;
         }
         return array();
     }
+
+    public function updateBurgerAddedIngredientsIds($post)
+        {
+            $sql = 'UPDATE jitb_burgers SET added_ingredients_ids = :added_ingredients_ids WHERE id= :id';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":added_ingredients_ids",$post['added_ingredients_ids']);
+            $stmt->bindValue(":id",$post['id']);
+            if($stmt->execute())
+            {
+                return true;
+            }
+            return array();
+        }
 
     public function updateBurgerRating($id,$rating)
     {

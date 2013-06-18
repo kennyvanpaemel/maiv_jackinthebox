@@ -281,7 +281,12 @@ $app->post('/qrcode','addQRCode');//
 $app->post('/users/update','updateUser');//
 $app->post('/users/update/burger','updateBurgerStatus');//
 $app->post('/users/addedtogroup','updateAddedToGroup');
+
 $app->post('/comments/add','addComment');//
+
+$app->post('/burgers/updateadded','updateBurgerAddedIngredientsIds');
+$app->post('/comments/:burger_id/:user_id','addComment');//
+
 $app->post('/burgeringredient','addBurgerIngredient');
 
 $app->put('/burgers/:burger_id','updateBurger');//
@@ -373,6 +378,7 @@ function getAllTastes()
 }
 
 function getBurgerIngredientsByBurgerId($burger_id){
+    error_log("getBurgerIngredientsByBurgerId".$burger_id);
     $burgersIngredientsDAO = new BurgersIngredientsDAO();
     echo json_encode($burgersIngredientsDAO->getBurgerIngredientsByBurgerId($burger_id));
     exit();
@@ -525,6 +531,14 @@ function updateAddedToGroup(){
     $post = Slim::getInstance()->request()->post();
     $usersDAO = new UsersDAO();
     echo json_encode($usersDAO->updateAddedToGroup($post));
+    exit();
+}
+
+function updateBurgerAddedIngredientsIds(){
+    error_log("update burger: added ingredients ids");
+    $post = Slim::getInstance()->request()->post();
+    $burgersDAO = new BurgersDAO();
+    echo json_encode($burgersDAO->updateBurgerAddedIngredientsIds($post));
     exit();
 }
 

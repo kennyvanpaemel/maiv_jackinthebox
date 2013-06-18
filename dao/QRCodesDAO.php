@@ -14,7 +14,11 @@ class QRCodesDAO
 
     public function getAllQRCodes()
     {
+<<<<<<< HEAD
         $sql = 'SELECT * FROM jitb_qrcodes';
+=======
+    	$sql = 'SELECT * FROM jitb_qrcodes';
+>>>>>>> 11c235fbf83334edc9f54126543ddea94797599c
         $stmt = $this->pdo->prepare($sql);
         if($stmt->execute())
         {
@@ -22,7 +26,11 @@ class QRCodesDAO
 
             if(!empty($qrcodes))
             { 
+<<<<<<< HEAD
                 return $qrcodes;
+=======
+            	return $qrcodes;
+>>>>>>> 11c235fbf83334edc9f54126543ddea94797599c
             }
         }
 

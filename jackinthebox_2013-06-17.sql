@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 15 Jun 2013 om 22:53
+-- Genereertijd: 17 Jun 2013 om 15:14
 -- Serverversie: 5.5.9
 -- PHP-Versie: 5.3.6
 
@@ -27,18 +27,12 @@ CREATE TABLE `jitb_burgers` (
   `rating` bigint(11) NOT NULL DEFAULT '0',
   `added_ingredients_ids` varchar(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_burgers`
 --
 
-INSERT INTO `jitb_burgers` VALUES(47, NULL, 'bitter', 0, 0, '5');
-INSERT INTO `jitb_burgers` VALUES(48, NULL, 'sweet', 0, 0, '2');
-INSERT INTO `jitb_burgers` VALUES(49, NULL, 'sweet', 0, 0, '1');
-INSERT INTO `jitb_burgers` VALUES(50, NULL, 'sweet', 0, 0, '1');
-INSERT INTO `jitb_burgers` VALUES(65, NULL, 'spicy', 0, 0, '9');
-INSERT INTO `jitb_burgers` VALUES(66, NULL, 'bitter', 0, 0, '5');
 
 -- --------------------------------------------------------
 
@@ -51,18 +45,12 @@ CREATE TABLE `jitb_burgersingredients` (
   `burger_id` tinyint(4) NOT NULL,
   `ingredient_id` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Gegevens worden uitgevoerd voor tabel `jitb_burgersingredients`
 --
 
-INSERT INTO `jitb_burgersingredients` VALUES(47, 54, 24);
-INSERT INTO `jitb_burgersingredients` VALUES(48, 55, 23);
-INSERT INTO `jitb_burgersingredients` VALUES(49, 56, 1);
-INSERT INTO `jitb_burgersingredients` VALUES(50, 57, 5);
-INSERT INTO `jitb_burgersingredients` VALUES(60, 65, 9);
-INSERT INTO `jitb_burgersingredients` VALUES(61, 66, 5);
 
 -- --------------------------------------------------------
 
@@ -129,6 +117,23 @@ INSERT INTO `jitb_ingredients` VALUES(25, 'Sliced Jalapenos', 'spicy', 1, 'slice
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `jitb_qrcodes`
+--
+
+CREATE TABLE `jitb_qrcodes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qrcode` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `jitb_qrcodes`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `jitb_users`
 --
 
@@ -149,10 +154,9 @@ CREATE TABLE `jitb_users` (
 -- Gegevens worden uitgevoerd voor tabel `jitb_users`
 --
 
-INSERT INTO `jitb_users` VALUES(1, 'bassie', 'bastiaan', 'andriessen', 'bastiaan.andriessen@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 47, 1, 0);
-INSERT INTO `jitb_users` VALUES(20, 'bastiaan', 'Bastiaan', 'Andriessen2', 'bastiaan@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 50, 0, 0);
-INSERT INTO `jitb_users` VALUES(21, 'blub', 'Bqsdf', 'Qsdf', 'qsdf@qsdf.sdf.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 50, 0, 1);
-INSERT INTO `jitb_users` VALUES(22, 'kenny', 'Kenny', 'Blub', 'kenny@kenny.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 66, 0, 0);
-INSERT INTO `jitb_users` VALUES(23, 'derp', 'Test', 'Tester', 'bastiaan.d@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 49, 0, 0);
-INSERT INTO `jitb_users` VALUES(24, 'bqsdf', 'Bqsdf', 'Qsdf', 'bfdqs@herpes.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 49, 0, 0);
-INSERT INTO `jitb_users` VALUES(40, 'pol', 'Pol', 'Qsdf', 'pol@drol.de', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 65, 0, 0);
+INSERT INTO `jitb_users` VALUES(1, 'bassie', 'bastiaan', 'andriessen', 'bastiaan.andriessen@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);
+INSERT INTO `jitb_users` VALUES(20, 'bastiaan', 'Bastiaan', 'Andriessen2', 'bastiaan@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);
+INSERT INTO `jitb_users` VALUES(21, 'blub', 'Bqsdf', 'Qsdf', 'qsdf@qsdf.sdf.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);
+INSERT INTO `jitb_users` VALUES(22, 'kenny', 'Kenny', 'Blub', 'kenny@kenny.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);
+INSERT INTO `jitb_users` VALUES(23, 'derp', 'Test', 'Tester', 'bastiaan.d@hotmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);
+INSERT INTO `jitb_users` VALUES(24, 'bqsdf', 'Bqsdf', 'Qsdf', 'bfdqs@herpes.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, 0, 0);

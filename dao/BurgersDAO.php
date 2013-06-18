@@ -298,8 +298,9 @@ class BurgersDAO
 
     public function updateBurgerAddedIngredientsIds($post)
         {
-            $sql = 'UPDATE jitb_burgers SET added_ingredients_ids = :added_ingredients_ids WHERE id= :id';
+            $sql = 'UPDATE jitb_burgers SET name = :name, added_ingredients_ids = :added_ingredients_ids WHERE id= :id';
             $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":name",$post['name']);
             $stmt->bindValue(":added_ingredients_ids",$post['added_ingredients_ids']);
             $stmt->bindValue(":id",$post['id']);
             if($stmt->execute())

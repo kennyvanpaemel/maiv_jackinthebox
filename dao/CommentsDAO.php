@@ -31,7 +31,7 @@ class CommentsDAO
 
     public function getCommentsForBurger($burger_id)
     {
-        $sql = 'SELECT * FROM jitb_comments WHERE burger_id= :burger_id ORDER BY id ASC';
+        $sql = 'SELECT * FROM jitb_comments WHERE id= :burger_id ORDER BY id ASC';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":burger_id",$burger_id);
         if($stmt->execute())

@@ -290,7 +290,10 @@ $app->post('/comments/:burger_id/:user_id','addComment');//
 $app->post('/burgeringredient','addBurgerIngredient');
 
 $app->put('/burgers/:burger_id','updateBurger');//
-$app->post('/burgers/rating/:burger_id/:rating','updateBurgerRating');//
+/////////UPDATE/////////UPDATE/////////UPDATE/////////UPDATE/////////UPDATE
+$app->post('/burgers/rating','updateBurgerRating');//
+////// ENJA NOG NE UPDATE
+$app->post('/users/votes','updateVotedTastes');
 
 $app->run();
 
@@ -550,9 +553,21 @@ function updateBurger($burger_id)
 	exit();
 }
 
-function updateBurgerRating($burger_id,$rating)
+////////////UPDATE////////////UPDATE////////////UPDATE////////////UPDATE////////////UPDATE////////////UPDATE
+function updateBurgerRating()
 {
+    error_log("update burger: added ingredients ids");
 	$burgersDAO = new BurgersDAO();
-	echo json_encode($burgersDAO->updateBurgerRating($burger_id,$rating));
+    $post = Slim::getInstance()->request()->post();
+	echo json_encode($burgersDAO->updateBurgerRating($post));
 	exit();
+}
+
+/////UPDATE
+function updateVotedTastes(){
+    error_log("update user: voted tastes");
+    $usersDAO = new UsersDAO();
+    $post = Slim::getInstance()->request()->post();
+    echo json_encode($usersDAO->updateVotedTastes($post));
+    exit();
 }

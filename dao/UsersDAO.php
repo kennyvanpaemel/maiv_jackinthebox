@@ -128,6 +128,21 @@ class UsersDAO
         }
     }
 
+    ////////UPDATE////////UPDATE////////UPDATE////////UPDATE////////UPDATE////////UPDATE////////UPDATE
+    public function updateVotedTastes($post){
+            $sql = "UPDATE jitb_users SET voted_tastes = :voted_tastes
+                                          WHERE username = :username";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":voted_tastes",$post['voted_tastes']);
+            $stmt->bindValue(":username",$post['username']);
+
+            if($stmt->execute()){
+                return true;
+            } else {
+                throw new Exception("Your user data couldn't be updated.");
+            }
+        }
+
     public function updateUser($post){
         $sql = "UPDATE jitb_users SET username = :username,
                                       name = :name,

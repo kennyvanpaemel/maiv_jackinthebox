@@ -310,15 +310,16 @@ class BurgersDAO
             return array();
         }
 
-    public function updateBurgerRating($id,$rating)
+    ///////////UPDATE///////////UPDATE///////////UPDATE///////////UPDATE///////////UPDATE///////////
+    public function updateBurgerRating($post)
     {
         $sql = 'UPDATE jitb_burgers SET rating= :rating WHERE id= :id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(":rating",$rating);
-        $stmt->bindValue(":id",$id);
+        $stmt->bindValue(":rating",$post['rating']);
+        $stmt->bindValue(":id",$post['id']);
         if($stmt->execute())
         {
-            return $this;
+            return true;
         }
         return array();
     }

@@ -150,9 +150,7 @@ class UsersDAO
                                       name = :name,
                                       lastname = :lastname,
                                       email = :email,
-                                      password = :password,
-                                      voted = :voted,
-                                      burgervoted_id = :burgervoted_id
+                                      password = :password
                                       WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":username",$post['username']);
@@ -160,8 +158,6 @@ class UsersDAO
         $stmt->bindValue(":lastname",$post['lastname']);
         $stmt->bindValue(":email",$post['email']);
         $stmt->bindValue(":password",$post['password']);
-        $stmt->bindValue(":voted",$post['voted']);
-        $stmt->bindValue(":burgervoted_id",$post['burgervoted_id']);
         $stmt->bindValue(":id",$post['id']);
 
         if($stmt->execute()){

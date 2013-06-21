@@ -47,6 +47,7 @@ class UsersDAO
     }
 
     public function getUserByEmail($email){
+        error_log("getUserByEmail".$email);
         $sql = "SELECT *
                 FROM jitb_users
                 WHERE email = :email";

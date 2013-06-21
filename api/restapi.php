@@ -330,6 +330,8 @@ function getUserByUsername($username){
 function sendUserDataToUser($email){
     $usersDAO = new UsersDAO();
     $user = $usersDAO->getUserByEmail($email);
+    error_log("sendUserDataToUser".$email);
+    header('Content-Type: application/json');
     if($user != null){
         $mail  = '<html><head></head><body>';
 
@@ -350,9 +352,9 @@ function sendUserDataToUser($email){
         $header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
         mail($user['email'], 'Jack In The Box: Logingegevens', $mail, $header);
-        echo $user['email'];
+        echo json_encode($user);
     }else{
-        echo '';
+        echo json_encode(array());
     }
     exit();
 }
